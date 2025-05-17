@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [account, setAccount] = useState(null);
-  const [toastShown, setToastShown] = useState(false); // 👈 Toast tekrarını engellemek için
+  const [toastShown, setToastShown] = useState(false);
 
   useEffect(() => {
     const checkConnection = async () => {

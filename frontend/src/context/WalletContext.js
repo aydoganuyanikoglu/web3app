@@ -1,4 +1,3 @@
-// src/context/WalletContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const WalletContext = createContext();
