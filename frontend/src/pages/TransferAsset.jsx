@@ -62,9 +62,9 @@ const TransferAsset = () => {
                 {transferableAssets.map((asset, index) => (
                   <div
                     key={index}
-                    className={`border-[3px] rounded-xl cursor-pointer ${
+                    className={`border-[4px] rounded-xl cursor-pointer ${
                       selectedTokenId === asset.tokenId
-                        ? "border-orange-500 shadow-lg shadow-black"
+                        ? "border-blue-400 shadow-lg shadow-black"
                         : "border-transparent"
                     } transition`}
                     onClick={() => setSelectedTokenId(asset.tokenId)}

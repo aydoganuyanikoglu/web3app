@@ -4,6 +4,8 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+//we are creating a contract in here, this aims to bring an NFT system based on ERC-721 to represent tokens as nonfungible. This NFT's representing real world assets. Each token has metadata with asset structure. This contract allows us to mint new tokens with metadata, listing tokens for sale or delisting from sale, buying listed tokens, transferin tokens directly
+
 contract RealEstateToken is ERC721URIStorage, Ownable {
     uint256 public nextTokenId;
 
@@ -35,7 +37,7 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
         });
 
         nextTokenId++;
-    }
+    } //this function mints a new NFT representing assets. Sets the token's metadata URI using IPFS, saving asset details.
 
     function listForSale(uint256 _tokenId, uint256 _price) public {
         require(ownerOf(_tokenId) == msg.sender, "Not the owner");
@@ -43,7 +45,7 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
 
         assets[_tokenId].forSale = true;
         assets[_tokenId].price = _price;
-    }
+    } //provides to owner to list their tokens for a sale.
 
     function delistAsset(uint256 _tokenId) public {
         require(ownerOf(_tokenId) == msg.sender, "Not the owner");
@@ -51,7 +53,7 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
 
         assets[_tokenId].forSale = false;
         assets[_tokenId].price = 0;
-    }
+    } //removing the token from sale list.
 
     function buyAsset(uint256 _tokenId) public payable {
         Asset memory asset = assets[_tokenId];
@@ -60,20 +62,20 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
         require(msg.value >= asset.price, "Insufficient payment");
         require(msg.sender != asset.owner, "You already own this asset");
 
-        payable(asset.owner).transfer(asset.price);
+        payable(asset.owner).transfer(asset.price); //old owner gets his money
 
-        _transfer(asset.owner, msg.sender, _tokenId);
+        _transfer(asset.owner, msg.sender, _tokenId); //new owner gets token
 
         assets[_tokenId].owner = msg.sender;
         assets[_tokenId].forSale = false;
         assets[_tokenId].price = 0;
-    }
+    } //user can buys other users real world assets in this way.
 
     function transferAsset(address _to, uint256 _tokenId) public {
         require(ownerOf(_tokenId) == msg.sender, "Not the owner");
         _transfer(msg.sender, _to, _tokenId);
         assets[_tokenId].owner = _to;
-    }
+    } //provides transferring token to another user
 
     function getAssetsByOwner(address _owner) public view returns (Asset[] memory) {
         uint256 total = nextTokenId;
@@ -94,7 +96,7 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
         }
 
         return result;
-    }
+    } //to provide to user list his/her tokens
 
     function getAllAssetsForSale() public view returns (Asset[] memory) {
         uint256 total = nextTokenId;
@@ -115,5 +117,5 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
         }
 
         return result;
-    }
+    } //to list the tokens on sale.
 }

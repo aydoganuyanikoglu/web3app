@@ -102,10 +102,29 @@ export const WalletProvider = ({ children }) => {
     }
     setLoading(false);
   };
-
   useEffect(() => {
     fetchAccount();
-  }, [account]);
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length === 0) {
+          setAccount(null);
+          setAssets([]);
+          setSaledAssets([]);
+          toast.info("Wallet disconnected.");
+        } else {
+          toast.info("Account Changed");
+          setAccount(accounts[0]);
+          fetchMyAssets();
+          fetchSaledAssets();
+        }
+      });
+    }
+    return () => {
+      if (window.ethereum?.removeListener) {
+        window.ethereum.removeListener("accountsChanged", () => {});
+      }
+    };
+  }, []);
 
   return (
     <WalletContext.Provider

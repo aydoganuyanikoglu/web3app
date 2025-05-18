@@ -35,7 +35,7 @@ export const EmptyTransferList = () => {
           <div className="-mt-1">
             <CategoryIcon className="!text-5xl text-orange-500" />
           </div>
-          <h2 className="text-3xl font-bold">No Tokens on Sale!</h2>
+          <h2 className="text-3xl font-bold">No Tokens to Transfer!</h2>
         </div>
         <p className="mt-2 text-center text-lg font-medium">
           You need to mint your assets first!

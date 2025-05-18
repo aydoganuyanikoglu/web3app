@@ -49,7 +49,7 @@ const Navbar = () => {
     <>
       <ToastContainer position="top-center" autoClose={2500} />
       <nav className="w-full pt-[30px] px-[150px] max-mdp:px-[20px]">
-        <div className="py-4 px-10 max-md:px-2 text-black flex justify-between items-center border-[2px] border-orange-500 rounded-[20px]">
+        <div className="py-4 px-10 max-md:px-2 text-black flex justify-between items-center border-[2px] shadow-sm shadow-gray-600 rounded-[20px] hover:shadow-lg cursor-pointer">
           <Link to="/" className="text-xl hover:text-gray-400 font-semibold">
             RWA Tokenization
           </Link>
