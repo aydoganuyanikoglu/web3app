@@ -8,7 +8,7 @@ const resolveIPFS = (url) => {
   );
 };
 
-const AssetCard = ({ asset, onBuy, onList, isOwned, account }) => {
+const AssetCard = ({ asset, onBuy, onList, isOwned, account, deList }) => {
   const { tokenId, tokenURI, valuation, owner, forSale, price } = asset;
   const [salePrice, setSalePrice] = useState("");
 
@@ -68,9 +68,17 @@ const AssetCard = ({ asset, onBuy, onList, isOwned, account }) => {
         </div>
       )}
       {isOwned && forSale && (
-        <p className="mt-3 text-yellow-600 text-sm font-semibold">
-          This asset is already listed
-        </p>
+        <div>
+          <p className="mt-3 text-yellow-600 text-sm font-semibold">
+            This asset is already listed
+          </p>
+          <button
+            onClick={() => deList(asset.tokenId)}
+            className="mt-2 w-full bg-red-600 text-white py-2 rounded border-[1px] border-red-600 hover:bg-white hover:text-red-600"
+          >
+            Remove from Sale
+          </button>
+        </div>
       )}
     </div>
   );

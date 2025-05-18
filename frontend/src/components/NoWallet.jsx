@@ -17,10 +17,10 @@ const NoWallet = () => {
   };
 
   return (
-    <div className="pt-[140px] flex justify-center">
+    <div className="pt-[40px] flex justify-center">
       <div className="w-[600px] flex flex-col justify-center items-center py-10 px-5 border-[2px] border-gray-200 rounded-md text-gray-800 shadow-gray-500 shadow-lg max-sm:w-full">
         <div className="flex gap-1.5 max-md:flex-col max-md:items-center">
-          <h2 className="text-3xl font-extrabold">Connect Your Wallet </h2>
+          <h2 className="text-3xl font-bold">Connect Your Wallet </h2>
           <div className="-mt-1">
             <AccountBalanceWalletIcon className="!text-5xl text-orange-500" />
           </div>

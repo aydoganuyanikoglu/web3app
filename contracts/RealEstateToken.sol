@@ -45,6 +45,14 @@ contract RealEstateToken is ERC721URIStorage, Ownable {
         assets[_tokenId].price = _price;
     }
 
+    function delistAsset(uint256 _tokenId) public {
+        require(ownerOf(_tokenId) == msg.sender, "Not the owner");
+        require(assets[_tokenId].forSale == true, "Asset is not listed for sale");
+
+        assets[_tokenId].forSale = false;
+        assets[_tokenId].price = 0;
+    }
+
     function buyAsset(uint256 _tokenId) public payable {
         Asset memory asset = assets[_tokenId];
 

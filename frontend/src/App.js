@@ -4,6 +4,8 @@ import AddAsset from "./pages/AddAsset";
 import Home from "./pages/Home";
 import MyAssets from "./pages/MyAssets";
 import { WalletProvider } from "./context/WalletContext";
+import TransferAsset from "./pages/TransferAsset";
+import "./index.css";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddAsset />} />
           <Route path="/my-assets" element={<MyAssets />} />
+          <Route path="/transfer" element={<TransferAsset />} />
         </Routes>
       </Router>
     </WalletProvider>

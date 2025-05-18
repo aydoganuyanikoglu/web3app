@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [account, setAccount] = useState(null);
-  const [toastShown, setToastShown] = useState(false);
 
   useEffect(() => {
     const checkConnection = async () => {
@@ -20,10 +19,7 @@ const Navbar = () => {
 
       if (accounts.length > 0) {
         setAccount(accounts[0]);
-        if (!toastShown) {
-          toast.success("Wallet connected!");
-          setToastShown(true);
-        }
+        toast.success("Wallet Connected!");
       }
     };
 
@@ -47,25 +43,37 @@ const Navbar = () => {
         window.ethereum.removeListener("accountsChanged", handleAccountChange);
       }
     };
-  }, [toastShown]);
+  }, []);
 
   return (
     <>
       <ToastContainer position="top-center" autoClose={2500} />
-      <nav className="w-full pt-[30px] px-[300px] max-mdp:px-[20px]">
-        <div className="py-4 px-10 max-md:px-2 text-black flex justify-between items-center border-[2px] border-gray-700 rounded-[30px]">
-          <Link to="/" className="text-xl font-bold">
+      <nav className="w-full pt-[30px] px-[150px] max-mdp:px-[20px]">
+        <div className="py-4 px-10 max-md:px-2 text-black flex justify-between items-center border-[2px] border-orange-500 rounded-[20px]">
+          <Link to="/" className="text-xl hover:text-gray-400 font-semibold">
             RWA Tokenization
           </Link>
           <div className="space-x-8 flex items-center">
-            <Link to="/" className="hover:underline font-medium">
+            <Link to="/" className="text-md hover:text-gray-400 font-semibold">
               Home
             </Link>
-            <Link to="/add" className="hover:underline font-medium">
+            <Link
+              to="/add"
+              className="text-md hover:text-gray-400 font-semibold"
+            >
               Add Asset
             </Link>
-            <Link to="/my-assets" className="hover:underline font-medium">
+            <Link
+              to="/my-assets"
+              className="text-md hover:text-gray-400 font-semibold"
+            >
               My Assets
+            </Link>
+            <Link
+              to="/transfer"
+              className="text-md hover:text-gray-400 font-semibold"
+            >
+              Transfer
             </Link>
             {account && (
               <div className="relative group ml-4">
